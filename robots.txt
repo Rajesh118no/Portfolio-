@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rajesh-n-writer.github.io/sitemap.xml

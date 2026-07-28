@@ -1,0 +1,6 @@
+{
+  "name": "Rajesh N Portfolio",
+  "description": "Personal portfolio website for Rajesh N, freelance writer and B.Pharm student featuring stories, medical writing, case studies, and novel chapters.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
