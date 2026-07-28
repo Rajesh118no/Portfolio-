@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
   animateCursor();
 
   // Hover effect over interactive elements
-  const interactiveElems = document.querySelectorAll('a, button, .portfolio-card, .service-card, .contact-item, input, textarea, select');
+  const interactiveElems = document.querySelectorAll('a, button, .portfolio-card, .service-card');
   interactiveElems.forEach(elem => {
     elem.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
     elem.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
@@ -500,9 +500,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ------------------------------------------------
-     11. CONTACT FORM & TOAST NOTIFICATION
+     11. TOAST NOTIFICATION UTILITY
      ------------------------------------------------ */
-  const contactForm = document.getElementById('contactForm');
   const toastNotification = document.getElementById('toastNotification');
 
   function showToast(message) {
@@ -513,26 +512,6 @@ document.addEventListener('DOMContentLoaded', () => {
         toastNotification.classList.remove('show');
       }, 3500);
     }
-  }
-
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const submitBtn = contactForm.querySelector('button[type="submit"]');
-      if (submitBtn) {
-        submitBtn.textContent = 'Sending Message...';
-        submitBtn.disabled = true;
-      }
-
-      setTimeout(() => {
-        showToast('Thank you! Your message has been sent successfully.');
-        contactForm.reset();
-        if (submitBtn) {
-          submitBtn.textContent = "Send Message";
-          submitBtn.disabled = false;
-        }
-      }, 1200);
-    });
   }
 
 });
