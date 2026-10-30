@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
   animateCursor();
 
   // Hover effect over interactive elements
-  const interactiveElems = document.querySelectorAll('a, button, .portfolio-card, .service-card');
+  const interactiveElems = document.querySelectorAll('a, button, .portfolio-card, .service-card, input');
   interactiveElems.forEach(elem => {
     elem.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
     elem.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
@@ -253,10 +253,12 @@ document.addEventListener('DOMContentLoaded', () => {
     portfolioCards.forEach(card => {
       const category = card.getAttribute('data-category');
       const title = card.querySelector('.card-work-title')?.textContent.toLowerCase() || '';
+      const subtitle = card.querySelector('.card-work-subtitle')?.textContent.toLowerCase() || '';
       const excerpt = card.querySelector('.card-work-excerpt')?.textContent.toLowerCase() || '';
+      const tags = card.querySelector('.card-skills-list')?.textContent.toLowerCase() || '';
 
       const matchesCategory = (activeCategory === 'all' || category === activeCategory);
-      const matchesSearch = (title.includes(query) || excerpt.includes(query));
+      const matchesSearch = (title.includes(query) || subtitle.includes(query) || excerpt.includes(query) || tags.includes(query));
 
       if (matchesCategory && matchesSearch) {
         card.style.display = 'flex';
@@ -292,41 +294,257 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Work Data Store
   const workData = {
-    'manga-script': {
-      title: 'Manga Promotion Reel Script — "Shadows of Elysium"',
-      meta: 'Script Writing • Anime/Manga Marketing • 60-Second Video Hook',
+    'youtube-script': {
+      title: 'YouTube Scriptwriting Sample — "The Art of Being Unforgettable"',
+      meta: 'Long-Form YouTube Script • Dark Psychology & Human Behaviour • 11–13 Min Duration',
+      readingTime: '7 min read',
+      content: `
+        <div class="case-study-title">THE ART OF BEING UNFORGETTABLE</div>
+        <div style="font-size:1.1rem; color:#d1d5db; font-style:italic; margin-top:-0.5rem; margin-bottom:1.5rem;">The Psychology of Making People Think About You When You're Not Around.</div>
+
+        <div class="case-study-meta">
+          <span>🎯 Genre: Dark Psychology, Human Behaviour, Social Dynamics</span>
+          <span>⏱️ Estimated Duration: 11–13 Minutes</span>
+          <span>🎙️ Narration Style: Calm, Controlled, Intellectually Provocative, Analytical</span>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:1.5rem; margin-bottom:2rem;">
+          <h4 style="color:#f59e0b; margin-bottom:0.6rem; text-transform:uppercase; letter-spacing:1px; font-size:0.8rem;">Project Context & Scriptwriting Approach</h4>
+          <p style="margin:0 0 0.75rem 0; font-size:0.95rem; line-height:1.6; color:#e5e7eb;">
+            A long-form psychological storytelling script exploring why certain individuals remain in our thoughts long after an interaction ends. Built around real-life scenarios, psychological concepts, and the ideas of Robert Greene, the script transforms an intellectual discussion into an engaging cinematic narrative.
+          </p>
+          <p style="margin:0; font-size:0.85rem; color:var(--text-muted); line-height:1.5;">
+            • Creative direction influenced by storytelling creators like Kallaway and George Alexander.<br>
+            • Developed from an analysis of Robert Greene's conversation with Raj Shamani.<br>
+            • Presented strictly as a professional writing portfolio sample.
+          </p>
+        </div>
+
+        <hr style="border-color:var(--card-border); margin: 2rem 0;">
+
+        <!-- ACT I: THE HOOK -->
+        <h3 style="color:#fff; margin-bottom:0.75rem; font-size:1.2rem;">[ACT I: THE PHANTOM PRESENCE — COLD OPEN] (0:00 – 1:45)</h3>
+        <p style="color:var(--text-muted); font-size:0.88rem; font-style:italic; margin-bottom:1rem;">
+          [VISUAL: Slow, cinematic tracking shot across an empty room. Warm low-key lighting. Rain softly hits a windowpane. Cut to a quiet café table where two people just finished a conversation; one chair is empty. The focus lingers on the empty space.]<br>
+          [AUDIO: Low-frequency atmospheric ambient drone. A faint, deliberate heartbeat pulse entering at 0:25.]
+        </p>
+
+        <div class="script-dialogue" style="margin-bottom:1.75rem;">
+          <strong>NARRATOR (Calm, measured, intimate):</strong><br>
+          "Have you ever noticed that the people you think about the most aren't usually the ones who talk the most?<br><br>
+          They aren't the loudest in the room. They don't fill every silence with desperate chatter. They aren't constantly begging for your validation or posting every micro-detail of their lives to prove their worth.<br><br>
+          In fact, it's often the exact opposite.<br><br>
+          You might have only spoken to them for twenty minutes. The conversation felt effortless—perhaps even understated. But later that night, as you're driving home in the quiet of your car, or staring at your ceiling before falling asleep, their words replay in your head.<br><br>
+          A single question they asked. The relaxed way they held eye contact. The fact that they didn't seem in a rush to convince you of anything.<br><br>
+          Why does this happen? Why do some people vanish from our memory the second they walk out the door, while others take up permanent residence in our minds?<br><br>
+          Psychologists call this cognitive retention. But strategists like Robert Greene describe it through a much older, more calculated principle: <em>the art of strategic absence</em>."
+        </div>
+
+        <!-- ACT II: HYPER-AVAILABILITY -->
+        <h3 style="color:#fff; margin-bottom:0.75rem; font-size:1.2rem;">[ACT II: THE TRAP OF HYPER-AVAILABILITY] (1:45 – 4:20)</h3>
+        <p style="color:var(--text-muted); font-size:0.88rem; font-style:italic; margin-bottom:1rem;">
+          [VISUAL: Kinetic editorial montage—fast cuts of phone notifications, infinite scroll feeds, frantic networking events. Cut sharply to total silence: a solitary figure observing a room with quiet stillness.]<br>
+          [AUDIO: Sound of digital noise suddenly cut off by a muffled bass drop.]
+        </p>
+
+        <div class="script-dialogue" style="margin-bottom:1.75rem;">
+          <strong>NARRATOR:</strong><br>
+          "Most people operate under a dangerous social misconception: they believe that to be valued, they must be constantly visible.<br><br>
+          They double-text. They over-explain. They linger too long at gatherings. They make themselves endlessly available because their subconscious fears that if they disappear for even a day, they will be forgotten.<br><br>
+          What they fail to understand is that availability destroys value.<br><br>
+          In economics, scarcity creates worth. In human psychology, the exact same law governs fascination.<br><br>
+          When Robert Greene examined human nature during his conversation with Raj Shamani, he laid bare an uncomfortable truth about human desire: people cannot yearn for what is already suffocating them.<br><br>
+          When you are always there—always accessible, always eager to respond within four seconds—you remove the single element that fuels human imagination: the space to wonder.<br><br>
+          Your presence becomes ambient background noise. To make someone think about you when you're not around, you must first give them the opportunity to feel your absence."
+        </div>
+
+        <!-- ACT III: ZEIGARNIK EFFECT -->
+        <h3 style="color:#fff; margin-bottom:0.75rem; font-size:1.2rem;">[ACT III: THE ZEIGARNIK EFFECT & STRATEGIC MYSTERY] (4:20 – 7:10)</h3>
+        <p style="color:var(--text-muted); font-size:0.88rem; font-style:italic; margin-bottom:1rem;">
+          [VISUAL: Split-screen documentary style. Historical black-and-white archives of 1920s Vienna cafés blending into modern psychological diagram overlays.]<br>
+          [AUDIO: Subtle, rhythmic clock tick tempo. Gentle piano chords.]
+        </p>
+
+        <div class="script-dialogue" style="margin-bottom:1.75rem;">
+          <strong>NARRATOR:</strong><br>
+          "In the 1920s, psychologist Bluma Zeigarnik sat in a bustling Vienna café and noticed something curious about the waiters.<br><br>
+          They could remember complex, unwritten food orders for twelve tables at once without missing a beat. But the exact moment the bill was paid and the table was cleared, the memory vanished completely. If you asked them five minutes later what you had ordered, they couldn't tell you.<br><br>
+          Her finding became known as the Zeigarnik Effect: the human brain cannot tolerate an open loop. It craves closure.<br><br>
+          When an interaction leaves an unanswered question, an intriguing unfinished thought, or an unresolved emotional frequency, your subconscious mind continuously cycles through it, trying to piece together the answer.<br><br>
+          Amateur communicators spill everything on the first meeting. They dump their entire history, their trauma, their political opinions, and their insecurities onto the table. They leave zero mystery.<br><br>
+          A master storyteller—or anyone who understands human dynamics—withholds roughly twenty percent.<br><br>
+          They share something poignant, pause, and let the implication breathe. They don't over-explain the punchline. And when the conversation reaches its most fascinating peak, they have the discipline to conclude it. They leave the psychological loop wide open."
+        </div>
+
+        <!-- ACT IV: EMOTIONAL CONTRAST -->
+        <h3 style="color:#fff; margin-bottom:0.75rem; font-size:1.2rem;">[ACT IV: THE POWER OF EMOTIONAL CONTRAST] (7:10 – 9:30)</h3>
+        <p style="color:var(--text-muted); font-size:0.88rem; font-style:italic; margin-bottom:1rem;">
+          [VISUAL: High-contrast chiaroscuro lighting. Focus on nuanced facial expressions—the micro-signals of active listening versus passive waiting.]
+        </p>
+
+        <div class="script-dialogue" style="margin-bottom:1.75rem;">
+          <strong>NARRATOR:</strong><br>
+          "Consider the emotional texture of everyday life. Most human interactions are flat, predictable, and transactional.<br><br>
+          'How are you?' 'Good, how are you?' 'Busy, you know how it is.'<br><br>
+          When you enter a room and match that exact frequency, you become utterly invisible.<br><br>
+          Being unforgettable does not require flamboyant theatricality or loud charisma. It requires emotional contrast.<br><br>
+          When everyone around you is anxious and fidgeting with their screens, you bring deliberate stillness.<br><br>
+          When people are desperate to talk about themselves, you offer deep, undivided attention. You don't listen to wait for your turn to speak; you listen to detect the subtext beneath their words.<br><br>
+          Robert Greene has often highlighted that humans spend the majority of their lives starved of genuine understanding. If you become the rare individual who makes someone feel truly seen, you install an emotional anchor in their nervous system.<br><br>
+          And when you walk away, the mundane coldness of ordinary life reminds them of the contrast you provided."
+        </div>
+
+        <!-- ACT V: THE INVERSION OF NEED -->
+        <h3 style="color:#fff; margin-bottom:0.75rem; font-size:1.2rem;">[ACT V: THE INVERSION OF NEED] (9:30 – 11:45)</h3>
+        <p style="color:var(--text-muted); font-size:0.88rem; font-style:italic; margin-bottom:1rem;">
+          [VISUAL: Slow camera push-in. High-resolution cinematic portrait framing. Steady, centered eye line.]
+        </p>
+
+        <div class="script-dialogue" style="margin-bottom:1.75rem;">
+          <strong>NARRATOR:</strong><br>
+          "Here is the foundational paradox of social dynamics:<br><br>
+          The harder you try to make someone remember you, the more forgettable you become.<br><br>
+          Desperation has a scent. When you crave approval, when you laugh too hard at mediocre jokes, or when you fish for validation, people instinctively pull away. The human brain registers insecurity as a burden.<br><br>
+          The unforgettable individual operates from an inversion of need.<br><br>
+          They are comfortable with silence. If a conversation pauses, they don't panic. They don't scramble to fill the void. They allow silence to exist without apologizing for it.<br><br>
+          They are fully present while they are with you, but they are clearly anchored to a purpose that exists outside the room. You sense that their internal world does not depend on your applause.<br><br>
+          That emotional sovereignty is quietly hypnotic.<br><br>
+          Because when someone doesn't need your validation, you suddenly find yourself wondering what they think of you."
+        </div>
+
+        <!-- ACT VI: THE UNFINISHED CONCLUSION -->
+        <h3 style="color:#fff; margin-bottom:0.75rem; font-size:1.2rem;">[ACT VI: THE INCOMPLETE RESOLUTION] (11:45 – 12:30)</h3>
+        <p style="color:var(--text-muted); font-size:0.88rem; font-style:italic; margin-bottom:1rem;">
+          [VISUAL: Camera tracks slowly backward through an empty corridor. Warm lights dim down one by one. Lingering footsteps.]<br>
+          [AUDIO: Percussion fades away completely. A solitary, sustained cello harmonic tone hangs in the silence.]
+        </p>
+
+        <div class="script-dialogue" style="margin-bottom:1.5rem;">
+          <strong>NARRATOR:</strong><br>
+          "Ultimately, being unforgettable is not an act of clever manipulation or rehearsed conversational tactics.<br><br>
+          It is a discipline of restraint.<br><br>
+          It is knowing when to speak and when to remain quiet.<br><br>
+          It is knowing how to give people your full warmth in the moment, and having the courage to step back so your presence can settle into their thoughts.<br><br>
+          Because in the end, you don't become unforgettable by trying to force someone to remember you; you become unforgettable when your presence was genuine, and your absence leaves a space that"
+        </div>
+
+        <div class="manuscript-incomplete-flag">
+          <strong>[PORTFOLIO NOTE — INCOMPLETE ENDING]</strong>
+          The original portfolio script draft concludes here with an unfinished final sentence, preserved without fabrication per the author's writing archive.
+        </div>
+      `
+    },
+    'ghost-saga': {
+      title: 'GHOST - SAGA — Original Novel',
+      meta: 'Original Novel / Creative Writing • Coming Soon',
+      readingTime: '2 min read',
+      content: `
+        <div class="case-study-title">GHOST - SAGA</div>
+        <div class="case-study-meta">
+          <span style="color:#f59e0b; font-weight:600;">⚡ Status: Coming Soon</span>
+          <span>📖 Category: Original Novel / Creative Writing</span>
+          <span>🎭 Genre: Dark Psychological Fantasy</span>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-left:3px solid var(--accent-white); border-radius:0 14px 14px 0; padding:2rem; margin:1.75rem 0;">
+          <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:2px; color:var(--text-muted); font-weight:700; margin-bottom:1.25rem;">PUBLIC SYNOPSIS</div>
+          <div style="font-family:var(--font-serif, Georgia, serif); font-size:1.15rem; line-height:1.9; color:var(--text-primary);">
+            <p style="margin-bottom:1.2rem;">Something happened to the world.</p>
+            <p style="margin-bottom:1.2rem;">An unexplained incident changed humanity forever.</p>
+            <p style="margin-bottom:1.2rem;">A mysterious power emerged, and civilization would never be the same again.</p>
+            <p style="margin-bottom:1.2rem;">The world descended into chaos. New powers awakened. The natural order began to collapse. And humanity found itself facing consequences it could neither understand nor control.</p>
+            <p style="margin-bottom:1.2rem;">Was it an experiment?</p>
+            <p style="margin-bottom:1.2rem;">An extraordinary phenomenon?</p>
+            <p style="margin-bottom:1.2rem;">Or something far beyond human understanding?</p>
+            <p style="margin-bottom:1.2rem;">As the world struggles to survive the aftermath, one question remains unanswered:</p>
+            <p style="margin-bottom:1.2rem; font-weight:700; color:#fff;">What truly happened that day?</p>
+            <p style="margin-bottom:1.5rem;">And in a world where power determines everything, what happens when someone without it enters a game he was never meant to play?</p>
+            <p style="margin:0; font-style:italic; color:var(--text-secondary); border-top:1px solid rgba(255,255,255,0.08); padding-top:1.25rem;">A dark psychological fantasy about power, mystery, ambition, and the fragile nature of humanity.</p>
+          </div>
+        </div>
+
+        <div style="padding:1.25rem 1.5rem; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:12px; margin-top:1.5rem;">
+          <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:1.5px; color:#f59e0b; font-weight:700; margin-bottom:0.4rem;">Status Update</div>
+          <p style="margin:0; font-size:0.9rem; color:var(--text-secondary); line-height:1.6;">
+            Currently in development. Official reading listings, serialized release schedule, and launch announcements will be published upon debut.
+          </p>
+        </div>
+      `
+    },
+    'thamizh-guardians': {
+      title: 'THAMIZH GUARDIANS — Promotional Scriptwriting & Marketing Copywriting',
+      meta: 'Promotional Scriptwriting / Marketing Copywriting • Video Reel Scripts',
       readingTime: '3 min read',
       content: `
-        <div class="case-study-title">Manga Promotion Reel Script: "Shadows of Elysium"</div>
+        <div class="case-study-title">THAMIZH GUARDIANS</div>
+        <div style="font-size:1.05rem; color:#d1d5db; font-style:italic; margin-top:-0.5rem; margin-bottom:1.25rem;">
+          Promotional Video Scripts & Multi-Platform Launch Copywriting
+        </div>
+
         <div class="case-study-meta">
-          <span>🎬 Format: Reel / Shorts Script</span>
-          <span>⏱️ Duration: 60 Seconds</span>
-          <span>🎯 Target: Dark Fantasy Anime Community</span>
+          <span>🎬 Deliverables: Video Reel Scripts, Social Media Copy, Launch Strategy</span>
+          <span>🎯 Focus: Action-Fantasy Manga Promotion & Audience Hook Retention</span>
         </div>
 
-        <p><strong>OBJECTIVE:</strong> Capture viewer attention in the first 3 seconds and drive manga preorder conversions on Social Media.</p>
-
-        <h3 style="margin-top:2rem; margin-bottom:1rem; color:#fff;">[SCENE 1: THE HOOK] (0:00 - 0:08)</h3>
-        <p><em>[VISUAL: Rapid jump cuts of ink splatters, heavy rain falling upside down against a neon pitch-black alley, and a glowing crimson eye snapping open.]</em></p>
-        <p><em>[SOUND: Deep bass drop, muffled rain heartbeat, whispering voices.]</em></p>
-        <div class="script-dialogue">
-          <strong>VOICEOVER (Deep, enigmatic tone):</strong><br>
-          "They told you memories were permanent. They lied to you..."
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:1.25rem 1.5rem; margin-bottom:1.75rem;">
+          <h4 style="color:#f59e0b; margin-bottom:0.4rem; text-transform:uppercase; letter-spacing:1px; font-size:0.75rem;">Project Scope & Attribution</h4>
+          <p style="margin:0 0 0.5rem 0; font-size:0.9rem; line-height:1.5; color:var(--text-primary);">
+            Commissioned promotional scriptwriting and marketing content creation for the manga series:
+          </p>
+          <ul style="margin:0 0 0.75rem 1.25rem; font-size:0.85rem; color:var(--text-secondary); line-height:1.6;">
+            <li>Promotional video scripts & pacing frameworks</li>
+            <li>Social media reel scripts optimized for 3-second hook retention</li>
+            <li>Launch copy and platform announcement messaging</li>
+            <li>Campaign storytelling and teaser structuring</li>
+          </ul>
+          <p style="margin:0; font-size:0.8rem; color:var(--text-muted); font-style:italic; border-top:1px solid rgba(255,255,255,0.06); padding-top:0.6rem;">
+            Attribution Notice: The work showcased below consists of commissioned promotional scriptwriting and marketing copywriting. Rajesh N is not the creator, author, artist, or owner of Thamizh Guardians.
+          </p>
         </div>
 
-        <h3 style="margin-top:2rem; margin-bottom:1rem; color:#fff;">[SCENE 2: THE CONFLICT] (0:08 - 0:25)</h3>
-        <p><em>[VISUAL: Fast-paced manga panel reveals. Character Kael holding a cracked obsidian flask. Pan down to a shattered laboratory glass with glowing blue liquid.]</em></p>
-        <div class="script-dialogue">
+        <h3 style="margin-top:1.5rem; margin-bottom:0.75rem; color:#fff; font-size:1.15rem;">[PROMOTIONAL REEL SCRIPT: MULTI-PLATFORM LAUNCH]</h3>
+        <p style="color:var(--text-muted); font-size:0.85rem; font-style:italic; margin-bottom:1rem;">
+          [FORMAT: 60-Second Short-Form Video / Reel]<br>
+          [OBJECTIVE: Stop the scroll within 3 seconds, evoke curiosity about the Tamil warrior lore, and announce platform accessibility.]
+        </p>
+
+        <div class="script-dialogue" style="margin-bottom:1.5rem;">
+          <strong>[SCENE 1: THE HOOK] (0:00 - 0:08)</strong><br>
+          <em>[VISUAL: Rapid flash of temple silhouettes, crimson blade arcs, and intricate warrior sigils fading into inked panel art.]</em><br>
+          <em>[AUDIO: Accelerating traditional drum pulse, metallic clash, sudden silence.]</em><br><br>
+          <strong>VOICEOVER (Conversational, urgent):</strong><br>
+          "Wait... idha miss pannadheenga. Neenga manga padikkarathu pidikkuma-na? Appo intha announcement ungalukkuthaan."<br><br>
+
+          <strong>[SCENE 2: THE MULTI-PLATFORM HOOK] (0:08 - 0:35)</strong><br>
+          <em>[VISUAL: Kinetic manga panel carousel showcasing supernatural conflicts and warrior heritage.]</em><br><br>
           <strong>VOICEOVER:</strong><br>
-          "In Elysium City, your happiest memory can be auctioned to the highest bidder by midnight. And Kael just discovered who bought his childhood."
+          "Namma manga ippo... multiple platforms-la available irukku. Experience onnu thaan — same story, same manga. Aanaa, ungalukku pudichcha platform-la padikkalaam."<br><br>
+
+          <strong>[SCENE 3: THE CALL TO ACTION] (0:35 - 0:60)</strong><br>
+          <em>[VISUAL: Split screen highlighting verified platform logos, transitioning to bold title logo.]</em><br><br>
+          <strong>VOICEOVER:</strong><br>
+          "Neenga endha platform-a choose panna poreenga? Link bio-la irukku. And start reading today."
         </div>
 
-        <h3 style="margin-top:2rem; margin-bottom:1rem; color:#fff;">[SCENE 3: THE CLIMAX & CTA] (0:25 - 0:60)</h3>
-        <p><em>[VISUAL: Kinetic typography scrolling across sword clashes, manga panel speed-lines, crescendo orchestration.]</em></p>
-        <div class="script-dialogue">
-          <strong>VOICEOVER:</strong><br>
-          "Will he burn the city to get it back—or forget he ever loved her? Read Chapter 1 now on MangaPlus."
+        <div style="margin-top:1.5rem; padding:1.25rem; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:12px;">
+          <h4 style="color:#fff; font-size:0.85rem; margin-bottom:0.4rem;">External Reference Destinations (Client Series):</h4>
+          <p style="margin:0 0 0.4rem 0; font-size:0.85rem; color:var(--text-secondary);">
+            • <strong>GlobalComix:</strong> <a href="https://globalcomix.com/c/thamizh-guardians" target="_blank" rel="noopener noreferrer" style="color:#ef4444; text-decoration:underline;">External Series Listing</a> (Official publisher release)
+          </p>
+          <p style="margin:0; font-size:0.85rem; color:var(--text-secondary);">
+            • <strong>MANGA Plus Creators by SHUEISHA:</strong> <a href="https://mangaplus-creators.jp/episodes/vm2606092033210027363182" target="_blank" rel="noopener noreferrer" style="color:#f59e0b; text-decoration:underline;">External Episode Showcase</a>
+          </p>
         </div>
+      `
+    },
+    'manga-script': {
+      // Alias for backwards-compatibility
+      title: 'THAMIZH GUARDIANS — Promotional Scriptwriting',
+      meta: 'Promotional Scriptwriting / Marketing Copywriting',
+      readingTime: '3 min read',
+      content: `
+        <div class="case-study-title">THAMIZH GUARDIANS</div>
+        <p>Attribution: Commissioned promotional scriptwriting and marketing copywriting. Not the creator, author, artist, or owner of Thamizh Guardians.</p>
       `
     },
     'linkedin-post': {
@@ -385,37 +603,13 @@ document.addEventListener('DOMContentLoaded', () => {
       `
     },
     'novel-chapter': {
-      title: 'Novel: "The Last Experiment"',
-      meta: 'Psychological Fiction • Science Fiction • Online Reader',
-      readingTime: '8 min read',
+      // Alias for backwards compatibility
+      title: 'GHOST - SAGA — Original Novel',
+      meta: 'Original Novel / Creative Writing • Coming Soon',
+      readingTime: '2 min read',
       content: `
-        <div class="case-study-title">The Last Experiment</div>
-        <div class="case-study-meta">
-          <span>📖 Genre: Psychological Thriller / Sci-Fi</span>
-          <span>📍 Chapter 1: The Echo in Room 404</span>
-        </div>
-
-        <p><strong>SYNOPSIS:</strong> In a subterranean pharmaceutical facility, lead neuro-researcher Dr. Kaelen Vane discovers a chemical isolate capable of selective memory extraction. But when he discovers an erased file bearing his own handwriting from three weeks prior, he realizes he was the first subject.</p>
-
-        <hr style="border-color:var(--card-border); margin: 2rem 0;">
-
-        <h3 style="margin-bottom:1.5rem; color:#fff; font-family:var(--font-serif);">Chapter 1: The Echo in Room 404</h3>
-
-        <p>The hum of the bio-containment centrifuge was the only constant sound in the sub-basement of Sector 7. Outside, rain beat against the reinforced glass slits of the surface tower, but three floors below ground, weather was merely a theoretical concept.</p>
-
-        <p>Dr. Kaelen Vane adjusted his magnifying loupe and stared at the dark amber solution resting inside Vial 09. Synthesized from a rare neuro-modulating compound, the liquid promised to cure trauma-induced memory loops. It was supposed to be humanity's greatest breakthrough in cognitive therapy.</p>
-
-        <p>Until the terminal screen blinked.</p>
-
-        <p><em>"SUBJECT 01 DE-SYNCHRONIZATION COMPLETE. LOG 21 RECOVERED."</em></p>
-
-        <p>Kaelen frowned. He hadn't logged a Subject 01 session. The trial phase wasn't scheduled to begin for another fortnight. He pulled up the log timestamp. The entry was logged 21 days ago, at 03:14 AM. The digital signature on the encryption key matched his personal biometric ring.</p>
-
-        <p>With trembling fingers, he opened the audio playback.</p>
-
-        <p>His own voice filled the silent laboratory, quiet, hurried, and terrified:</p>
-
-        <p><em>"If you are listening to this, Kaelen... do not look at the mirror in Room 404. You already took the dose."</em></p>
+        <div class="case-study-title">GHOST - SAGA</div>
+        <p>Status: Coming Soon. A dark psychological fantasy about power, mystery, ambition, and the fragile nature of humanity.</p>
       `
     }
   };
